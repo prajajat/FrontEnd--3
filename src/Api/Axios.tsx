@@ -3,7 +3,7 @@ import axios from "axios";
  
 const instance = axios.create({
   baseURL: 'https://dummyjson.com',
-  timeout: 1000,
+  timeout: 5000,
   headers: {'X-Custom-Header': 'foobar'}
 });
 
@@ -11,5 +11,11 @@ const instance = axios.create({
 export const fetchProducts = async () =>
  await instance.get("/products").then((res) => res.data.products);
 
+
 export const fetchProduct = async (id) =>
- await instance.get("/products/"+id).then((res) => res.data.products);
+ await instance.get("/products/"+id).then((res) => res.data);
+
+axios.interceptors.request.use(config => {
+config.headers.Authorization = `Bearer ${'abc'}`;
+return config;
+});

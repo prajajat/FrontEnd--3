@@ -4,9 +4,16 @@ import {increment, decrement} from '../Store/CartSlice'
 
 function Cart({}){ 
    const cart=useSelector((state)=>state.cart);
+   const totalPrice=cart.items.reduce((sum,c)=>{
+          return sum+c.price*c.quantity
+          },0)
+  const totalQantity=cart.items.reduce((sum,c)=>{
+          return sum+c.quantity
+          },0)
+         
    const dispatch = useDispatch();
    console.log(cart);
- 
+   if(cart.items.length==1)return(<p>cart is empty! start shopping</p>)
 return(<>
   
     <div className="bg-green-300">
@@ -18,7 +25,7 @@ return(<>
             return(
                <li key={i.id} className="border "> 
                <div>
-                   {i.title}
+                   {i.title} @{i.customization}
                   <button className="bg-blue-300 rounded m-2" 
                   onClick={()=>{//increment(i.id);
                     // console.log(ncart); setNCart({type:'Increment',data:i})
@@ -43,6 +50,7 @@ return(<>
          <button className="bg-blue-300 rounded m-3" onClick={()=>setPage(3)}>check out</button>
          </>
          }  */}
+          <span className="bg-yellow-300 rounded m-3">Total price : {totalPrice}</span> <span className="bg-yellow-300 rounded m-3">Total Quantity{totalQantity}</span>
      </div>
     </div>
    </>

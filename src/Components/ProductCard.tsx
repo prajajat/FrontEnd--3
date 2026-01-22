@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
-import { addToCart } from "../Store/CartSlice";
+import { addToCart } from "../Store/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard=({data})=>
 {
      const dispatch = useDispatch();
-  
+     const navigator=useNavigate()
  return (
    <div className="bg-gray-100 rounded-xl shadow-md p-5 border w-full max-w-sm max-auto">
     <div>
@@ -14,12 +15,7 @@ const ProductCard=({data})=>
       <div > {data.title}
          </div> 
     </div>
-    <div>
-    <label>
-       Product category :
-    </label>
-       {data.category}
-    </div>
+    
     <div>
     <label>
        Price :
@@ -42,10 +38,15 @@ const ProductCard=({data})=>
     {data.price>=500&&<div>
         <span className="text-xs bg-purple-100 px-2 py-1 rounded"> Premium</span>
         </div>}
-  <button className='bg-blue-200' 
+  <button className='bg-blue-200 p-2 m-2' 
   onClick={()=>
     dispatch(addToCart({id:data.id,price:data.price,customization:'',title:data.title}))}
   >add to cart</button>
+   <button className='bg-blue-200 p-2 m-2' 
+  onClick={()=>
+   navigator('/shop/products/'+data.id) 
+  }
+  >see more</button>
    </div>
  )
 };
