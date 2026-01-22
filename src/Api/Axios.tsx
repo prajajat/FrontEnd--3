@@ -15,6 +15,9 @@ export const fetchProducts = async () =>
 export const fetchProduct = async (id) =>
  await instance.get("/products/"+id).then((res) => res.data);
 
+export const postProduct = async (data) =>
+ await instance.get("/products/").then((res) => res.data);
+
 axios.interceptors.request.use(config => {
 config.headers.Authorization = `Bearer ${'abc'}`;
 return config;
