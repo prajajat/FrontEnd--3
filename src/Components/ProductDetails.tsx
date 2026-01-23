@@ -9,13 +9,15 @@ function ProductDetails()
      const dispatch = useDispatch();
       const navigator=useNavigate()
      console.log(id);
-      const {data,isLoading,isError}=useGetProduct(id);
+      const {data,isLoading,isError,error}=useGetProduct(id);
        console.log(data);
 
        if(isLoading){ return(<p>loading...</p>)}
       
        if(isError) 
-         return(<p>something worong</p>)
+       {
+         return(<p>something worong or page not Found </p>)
+       }
      
  return ( 
   <> <button  className ='p-2'onClick={()=>navigator(-1)}> Go Back</button>

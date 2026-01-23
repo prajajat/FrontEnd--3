@@ -22,3 +22,13 @@ axios.interceptors.request.use(config => {
 config.headers.Authorization = `Bearer ${'abc'}`;
 return config;
 });
+ 
+axios.interceptors.response.use(res => res,
+     err => {
+          if (err.response.status === 404) {
+            
+          }
+      return Promise.reject(err);
+}
+);
+ 

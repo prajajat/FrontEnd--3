@@ -1,7 +1,7 @@
 function ErrorLayout()
 {
   return(
-    <p>error</p>
+    <p>Something Wrong or 404 error</p>
   );
 }
 export default ErrorLayout;
